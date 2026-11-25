@@ -26,8 +26,10 @@ void main(List<String> args) {
         TextDirectionHint.ltr => 'LTR',
         TextDirectionHint.neutral => 'NEUTRAL',
       });
+      return;
     case 'normalize':
       stdout.writeln(normalizeArabic(input));
+      return;
     default:
       stderr.writeln('Unknown command: $command');
       _printUsage();
