@@ -3,44 +3,51 @@ import 'package:test/test.dart';
 
 void main() {
   group('detectTextDirection', () {
-    test('detects Arabic as RTL', () {
+    test('detects Arabic letters as RTL', () {
       expect(detectTextDirection('مرحبا'), TextDirectionHint.rtl);
     });
 
-    test('detects English as LTR', () {
+    test('detects basic Latin letters as LTR', () {
       expect(detectTextDirection('Hello'), TextDirectionHint.ltr);
     });
 
-    test('uses the first supported character after digits and spaces', () {
+    test('uses the first supported strong letter', () {
       expect(
         detectTextDirection('123 مرحبا Hello'),
         TextDirectionHint.rtl,
       );
+      expect(
+        detectTextDirection('123 Hello مرحبا'),
+        TextDirectionHint.ltr,
+      );
     });
 
-    test('returns neutral for numbers only', () {
-      expect(detectTextDirection('12345'), TextDirectionHint.neutral);
-    });
-
-    test('returns neutral for empty text', () {
+    test('returns neutral for empty text, digits, and punctuation', () {
       expect(detectTextDirection(''), TextDirectionHint.neutral);
-    });
-
-    test('returns neutral for punctuation only', () {
+      expect(detectTextDirection('12345'), TextDirectionHint.neutral);
       expect(detectTextDirection('!?.,'), TextDirectionHint.neutral);
     });
 
-    test('detects Latin when it appears before Arabic', () {
-      expect(
-        detectTextDirection('Hello مرحبا'),
-        TextDirectionHint.ltr,
-      );
+    test('Arabic-Indic digits do not determine direction', () {
+      expect(detectTextDirection('١٢٣٤٥'), TextDirectionHint.neutral);
+    });
+
+    test('Arabic punctuation does not determine direction', () {
+      expect(detectTextDirection('، ؛ ؟'), TextDirectionHint.neutral);
+    });
+
+    test('ignores combining marks before the first letter', () {
+      expect(detectTextDirection('\u064Eمرحبا'), TextDirectionHint.rtl);
     });
   });
 
   group('normalizeArabic', () {
-    test('removes Arabic diacritics', () {
+    test('removes common Arabic diacritics', () {
       expect(normalizeArabic('مَرْحَبًا'), 'مرحبا');
+    });
+
+    test('removes additional Arabic combining marks', () {
+      expect(normalizeArabic('ا\u0610لسلام'), 'السلام');
     });
 
     test('removes tatweel', () {
@@ -51,8 +58,8 @@ void main() {
       expect(normalizeArabic('Hello 123'), 'Hello 123');
     });
 
-    test('preserves ordinary Arabic letters', () {
-      expect(normalizeArabic('السلام عليكم'), 'السلام عليكم');
+    test('preserves ordinary Arabic letters, spaces, and punctuation', () {
+      expect(normalizeArabic('السلام عليكم، أهلاً!'), 'السلام عليكم، أهلاً!');
     });
 
     test('handles empty text', () {
