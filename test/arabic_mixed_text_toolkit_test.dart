@@ -49,7 +49,7 @@ void main() {
       expect(normalizeArabic('م\u06E5'), 'م\u06E5');
     });
 
-    test('removes extended Arabic combining marks', () {
+    test('preserves Arabic end-of-ayah sign U+08E2', () {\n      expect(normalizeArabic('ا\\u08E2لسلام'), 'ا\\u08E2لسلام');\n    });\n\n    test('removes extended Arabic combining marks', () {
       expect(normalizeArabic('ا\u08D3لسلام'), 'السلام');
     });
 
