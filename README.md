@@ -52,3 +52,19 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request. In
 ## License
 
 No license has been selected yet. Until a license is added by the repository owner, the repository should be treated as having no grant of permission for reuse beyond the rights provided by applicable law.
+
+## Windows installation
+
+A standalone Windows x64 executable and a Windows setup installer are built by GitHub Actions on feature-branch pushes.
+
+- `arabic-text-toolkit-windows-x64`: portable command-line executable.
+- `arabic-text-toolkit-windows-installer`: `ArabicTextToolkit-Setup.exe`, a Windows installer that installs the CLI executable, adds a Start Menu shortcut, optionally adds a desktop shortcut, and registers an uninstaller in Windows.
+
+The installer does **not** add a graphical user interface. Its shortcuts open a terminal showing the command help. To use commands directly, open PowerShell in the installation folder and run:
+
+```powershell
+.\arabic-text-toolkit.exe direction "مرحبا Hello"
+.\arabic-text-toolkit.exe normalize "مَرْحَبًا"
+```
+
+Workflow artifacts are temporary and currently retained for 14 days. The package remains in early development.

@@ -29,6 +29,11 @@ void main() {
     test('Arabic punctuation and combining marks do not determine direction', () {
       expect(detectTextDirection('، ؛ ؟'), TextDirectionHint.neutral);
       expect(detectTextDirection('\u08D3'), TextDirectionHint.neutral);
+      expect(detectTextDirection('\u0670'), TextDirectionHint.neutral);
+    });
+
+    test('recognizes a supported Arabic Extended-A letter', () {
+      expect(detectTextDirection('\u08A0'), TextDirectionHint.rtl);
     });
 
     test('ignores combining marks before the first letter', () {
@@ -49,6 +54,10 @@ void main() {
       expect(normalizeArabic('م\u06E5'), 'م\u06E5');
     });
 
+    test('preserves Arabic end-of-ayah sign U+08E2', () {
+      expect(normalizeArabic('ا\u08E2لسلام'), 'ا\u08E2لسلام');
+    });
+
     test('removes extended Arabic combining marks', () {
       expect(normalizeArabic('ا\u08D3لسلام'), 'السلام');
     });
@@ -62,7 +71,7 @@ void main() {
     });
 
     test('preserves ordinary Arabic letters, spaces, and punctuation', () {
-      expect(normalizeArabic('السلام عليكم، أهلاً!'), 'السلام عليكم، أهلاً!');
+      expect(normalizeArabic('السلام عليكم، أهلاً!'), 'السلام عليكم، أهلا!');
     });
 
     test('handles empty text', () {

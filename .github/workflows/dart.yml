@@ -2,7 +2,7 @@ name: Dart CI
 
 on:
   push:
-    branches: [main]
+    branches: [main, 'feature/**']
   pull_request:
     branches: [main]
 
@@ -20,3 +20,47 @@ jobs:
         run: dart analyze
       - name: Run tests
         run: dart test
+
+  windows-executable:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+      - name: Install dependencies
+        run: dart pub get
+      - name: Compile standalone Windows executable
+        run: |
+          New-Item -ItemType Directory -Force -Path build
+          dart compile exe bin/arabic_text_toolkit.dart -o build/arabic-text-toolkit.exe
+        shell: pwsh
+      - name: Upload Windows executable
+        uses: actions/upload-artifact@v4
+        with:
+          name: arabic-text-toolkit-windows-x64
+          path: build/arabic-text-toolkit.exe
+          if-no-files-found: error
+          retention-days: 14
+      - name: Install Inno Setup
+        run: choco install innosetup --yes --no-progress
+        shell: pwsh
+      - name: Build Windows installer
+        run: |
+          New-Item -ItemType Directory -Force -Path build/installer
+          $compiler = "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe"
+          if (-not (Test-Path $compiler)) {
+            throw "Inno Setup compiler was not found at: $compiler"
+          }
+          & $compiler installer/windows/setup.iss
+          if ($LASTEXITCODE -ne 0) {
+            throw "Inno Setup failed with exit code $LASTEXITCODE"
+          }
+        shell: pwsh
+      - name: Upload Windows installer
+        uses: actions/upload-artifact@v4
+        with:
+          name: arabic-text-toolkit-windows-installer
+          path: build/installer/ArabicTextToolkit-Setup.exe
+          if-no-files-found: error
+          retention-days: 14
