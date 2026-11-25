@@ -4,7 +4,7 @@ A small Dart package containing focused utilities for simple Arabic and English 
 
 ## Current status
 
-Early development (pre-1.0). The API may change. This package is not yet published on pub.dev.
+Version 1.0.0 is available as a GitHub release. The package is not currently published on pub.dev. It is an early-stage project, and its API and supported Unicode coverage may evolve.
 
 ## Features
 
@@ -51,7 +51,8 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request. In
 
 ## License
 
-No license has been selected yet. Until a license is added by the repository owner, the repository should be treated as having no grant of permission for reuse beyond the rights provided by applicable law.
+This project is licensed under the [MIT License](LICENSE).
+
 
 ## Windows installation
 
@@ -67,4 +68,4 @@ The installer does **not** add a graphical user interface. Its shortcuts open a 
 .\arabic-text-toolkit.exe normalize "مَرْحَبًا"
 ```
 
-Workflow artifacts are temporary and currently retained for 14 days. The package remains in early development.
+Workflow artifacts are temporary and currently retained for 14 days. This project is still at an early adoption stage; no verified usage or download figures are currently published.

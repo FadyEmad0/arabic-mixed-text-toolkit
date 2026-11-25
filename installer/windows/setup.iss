@@ -1,5 +1,5 @@
 #define AppName "Arabic Text Toolkit"
-#define AppVersion "0.1.0"
+#define AppVersion "1.0.0"
 #define AppPublisher "FadyEmad0"
 
 [Setup]
