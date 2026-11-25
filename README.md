@@ -82,4 +82,4 @@ To uninstall:
 dart pub global deactivate arabic_mixed_text_toolkit
 ```
 
-This is a command-line test utility, not a graphical Windows application or an installer (.msi/.exe). The package remains in early development.
+This is a portable command-line utility, not a graphical Windows application or a setup wizard. A standalone Windows executable is built by GitHub Actions when the Windows build job succeeds. Download the `arabic-text-toolkit-windows-x64` artifact from the workflow run; it contains `arabic-text-toolkit.exe`. The artifact is temporary (14 days), and the package remains in early development.
