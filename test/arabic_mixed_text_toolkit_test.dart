@@ -12,14 +12,8 @@ void main() {
     });
 
     test('uses the first supported strong letter', () {
-      expect(
-        detectTextDirection('123 مرحبا Hello'),
-        TextDirectionHint.rtl,
-      );
-      expect(
-        detectTextDirection('123 Hello مرحبا'),
-        TextDirectionHint.ltr,
-      );
+      expect(detectTextDirection('123 مرحبا Hello'), TextDirectionHint.rtl);
+      expect(detectTextDirection('123 Hello مرحبا'), TextDirectionHint.ltr);
     });
 
     test('returns neutral for empty text, digits, and punctuation', () {
@@ -32,8 +26,9 @@ void main() {
       expect(detectTextDirection('١٢٣٤٥'), TextDirectionHint.neutral);
     });
 
-    test('Arabic punctuation does not determine direction', () {
+    test('Arabic punctuation and combining marks do not determine direction', () {
       expect(detectTextDirection('، ؛ ؟'), TextDirectionHint.neutral);
+      expect(detectTextDirection('\u08D3'), TextDirectionHint.neutral);
     });
 
     test('ignores combining marks before the first letter', () {
@@ -50,7 +45,15 @@ void main() {
       expect(normalizeArabic('ا\u0610لسلام'), 'السلام');
     });
 
-    test('preserves Arabic letters that resemble marks', () {\n      expect(normalizeArabic('م\u06E5'), 'م\u06E5');\n    });\n\n    test('removes extended Arabic combining marks', () {\n      expect(normalizeArabic('ا\\u08D3لسلام'), 'السلام');\n    });\n\n    test('removes tatweel', () {
+    test('preserves Arabic letters that resemble marks', () {
+      expect(normalizeArabic('م\u06E5'), 'م\u06E5');
+    });
+
+    test('removes extended Arabic combining marks', () {
+      expect(normalizeArabic('ا\u08D3لسلام'), 'السلام');
+    });
+
+    test('removes tatweel', () {
       expect(normalizeArabic('الســلام'), 'السلام');
     });
 
