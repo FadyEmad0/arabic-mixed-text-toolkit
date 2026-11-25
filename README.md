@@ -4,7 +4,7 @@ A small Dart package containing focused utilities for simple Arabic and English 
 
 ## Current status
 
-Early development (pre-1.0). The API may change. This package is not yet published on pub.dev.
+Version 1.0.0 is available as a GitHub release. The package is not currently published on pub.dev. It is an early-stage project, and its API and supported Unicode coverage may evolve.
 
 ## Features
 
@@ -67,4 +67,4 @@ The installer does **not** add a graphical user interface. Its shortcuts open a 
 .\arabic-text-toolkit.exe normalize "مَرْحَبًا"
 ```
 
-Workflow artifacts are temporary and currently retained for 14 days. The package remains in early development.
+Workflow artifacts are temporary and currently retained for 14 days. This project is still at an early adoption stage; no verified usage or download figures are currently published.
