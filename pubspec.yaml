@@ -1,6 +1,6 @@
 name: arabic_mixed_text_toolkit
 description: A lightweight Dart toolkit for Arabic and English mixed text, RTL/LTR direction detection, and Arabic text normalization.
-version: 0.1.0
+version: 1.0.0
 repository: https://github.com/FadyEmad0/arabic-mixed-text-toolkit
 
 environment:
