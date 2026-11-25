@@ -53,33 +53,18 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request. In
 
 No license has been selected yet. Until a license is added by the repository owner, the repository should be treated as having no grant of permission for reuse beyond the rights provided by applicable law.
 
+## Windows installation
 
-## Install and run locally on Windows
+A standalone Windows x64 executable and a Windows setup installer are built by GitHub Actions on feature-branch pushes.
 
-This package includes a small command-line demo. It requires the Dart SDK.
+- `arabic-text-toolkit-windows-x64`: portable command-line executable.
+- `arabic-text-toolkit-windows-installer`: `ArabicTextToolkit-Setup.exe`, a Windows installer that installs the CLI executable, adds a Start Menu shortcut, optionally adds a desktop shortcut, and registers an uninstaller in Windows.
 
-1. Download the repository ZIP from GitHub (Code → Download ZIP) and extract it.
-2. Open Command Prompt or PowerShell in the extracted project folder (the folder containing `pubspec.yaml`).
-3. Run:
-
-```powershell
-dart pub get
-dart pub global activate --source path .
-```
-
-4. Try the commands:
+The installer does **not** add a graphical user interface. Its shortcuts open a terminal showing the command help. To use commands directly, open PowerShell in the installation folder and run:
 
 ```powershell
-arabic-text-toolkit direction "مرحبا Hello"
-arabic-text-toolkit normalize "مَرْحَبًا"
+.\arabic-text-toolkit.exe direction "مرحبا Hello"
+.\arabic-text-toolkit.exe normalize "مَرْحَبًا"
 ```
 
-If Windows says the command is not recognized, add Dart's Pub cache bin directory to your PATH. The default location is `%LOCALAPPDATA%\Pub\Cache\bin`. Then open a new terminal window.
-
-To uninstall:
-
-```powershell
-dart pub global deactivate arabic_mixed_text_toolkit
-```
-
-This is a portable command-line utility, not a graphical Windows application or a setup wizard. A standalone Windows executable is built by GitHub Actions when the Windows build job succeeds. Download the `arabic-text-toolkit-windows-x64` artifact from the workflow run; it contains `arabic-text-toolkit.exe`. The artifact is temporary (14 days), and the package remains in early development.
+Workflow artifacts are temporary and currently retained for 14 days. The package remains in early development.
