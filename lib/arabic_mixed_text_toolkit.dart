@@ -66,7 +66,7 @@ TextDirectionHint detectTextDirection(String text) {
 String normalizeArabic(String text) {
   return text
       .replaceAll(
-        RegExp(r'[\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06ED]'),
+        RegExp(r'[\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06DC\u06DF-\u06E4\u06E7-\u06E8\u06EA-\u06ED\u08CA-\u08FF]'),
         '',
       )
       .replaceAll('\u0640', '');
@@ -84,9 +84,7 @@ bool _isArabicLetter(int rune) {
       (rune >= 0x06FA && rune <= 0x06FC) ||
       rune == 0x06FF ||
       (rune >= 0x0750 && rune <= 0x077F) ||
-      (rune >= 0x08A0 && rune <= 0x08B4) ||
-      (rune >= 0x08B6 && rune <= 0x08C7) ||
-      (rune >= 0x08D3 && rune <= 0x08FF);
+      (rune >= 0x08A0 && rune <= 0x08C9);
 }
 
 bool _isBasicLatinLetter(int rune) {
