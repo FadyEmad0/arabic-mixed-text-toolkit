@@ -28,10 +28,11 @@ Name: "desktopicon"; Description: "Create a desktop shortcut"; GroupDescription:
 
 [Files]
 Source: "..\..\build\arabic-text-toolkit.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "launch-help.bat"; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]
-Name: "{group}\Arabic Text Toolkit - Help"; Filename: "{sys}\cmd.exe"; Parameters: "/k """"{app}\arabic-text-toolkit.exe"" --help"""; WorkingDir: "{app}"
-Name: "{autodesktop}\Arabic Text Toolkit - Help"; Filename: "{sys}\cmd.exe"; Parameters: "/k """"{app}\arabic-text-toolkit.exe"" --help"""; WorkingDir: "{app}"; Tasks: desktopicon
+Name: "{group}\Arabic Text Toolkit - Help"; Filename: "{app}\launch-help.bat"; WorkingDir: "{app}"
+Name: "{autodesktop}\Arabic Text Toolkit - Help"; Filename: "{app}\launch-help.bat"; WorkingDir: "{app}"; Tasks: desktopicon
 
 [UninstallDelete]
 Type: filesandordirs; Name: "{app}"
