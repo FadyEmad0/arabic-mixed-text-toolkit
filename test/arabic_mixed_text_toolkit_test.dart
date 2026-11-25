@@ -50,7 +50,7 @@ void main() {
       expect(normalizeArabic('ا\u0610لسلام'), 'السلام');
     });
 
-    test('removes tatweel', () {
+    test('preserves Arabic letters that resemble marks', () {\n      expect(normalizeArabic('م\u06E5'), 'م\u06E5');\n    });\n\n    test('removes extended Arabic combining marks', () {\n      expect(normalizeArabic('ا\\u08D3لسلام'), 'السلام');\n    });\n\n    test('removes tatweel', () {
       expect(normalizeArabic('الســلام'), 'السلام');
     });
 
