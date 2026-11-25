@@ -33,6 +33,3 @@ Source: "launch-help.bat"; DestDir: "{app}"; Flags: ignoreversion
 [Icons]
 Name: "{group}\Arabic Text Toolkit - Help"; Filename: "{app}\launch-help.bat"; WorkingDir: "{app}"
 Name: "{autodesktop}\Arabic Text Toolkit - Help"; Filename: "{app}\launch-help.bat"; WorkingDir: "{app}"; Tasks: desktopicon
-
-[UninstallDelete]
-Type: filesandordirs; Name: "{app}"
