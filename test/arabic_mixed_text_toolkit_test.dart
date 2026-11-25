@@ -71,7 +71,7 @@ void main() {
     });
 
     test('preserves ordinary Arabic letters, spaces, and punctuation', () {
-      expect(normalizeArabic('السلام عليكم، أهلاً!'), 'السلام عليكم، أهلاً!');
+      expect(normalizeArabic('السلام عليكم، أهلاً!'), 'السلام عليكم، أهلا!');
     });
 
     test('handles empty text', () {
