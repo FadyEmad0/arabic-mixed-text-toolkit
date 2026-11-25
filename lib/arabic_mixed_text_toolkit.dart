@@ -66,19 +66,19 @@ TextDirectionHint detectTextDirection(String text) {
 String normalizeArabic(String text) {
   return text
       .replaceAll(
-        RegExp(r'[\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06DC\u06DF-\u06E4\u06E7-\u06E8\u06EA-\u06ED\u08CA-\u08FF]'),
+        RegExp(r'[\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06DC\u06DF-\u06E4\u06E7-\u06E8\u06EA-\u06ED\u08CA-\u08E1\u08E3-\u08FF]'),
         '',
       )
       .replaceAll('\u0640', '');
 }
 
 bool _isArabicLetter(int rune) {
-  // Arabic, Arabic Supplement, Arabic Extended-A, and Arabic Extended-B.
+  // Arabic, Arabic Supplement, and selected Arabic Extended-A letters.
   // Exclude punctuation, digits, and combining marks by using letter ranges.
   return (rune >= 0x0620 && rune <= 0x063F) ||
       (rune >= 0x0641 && rune <= 0x064A) ||
       (rune >= 0x066E && rune <= 0x066F) ||
-      (rune >= 0x0671 && rune <= 0x06D3) ||
+      (rune >= 0x0671 && rune <= 0x06D3 && rune != 0x0670) ||
       rune == 0x06D5 ||
       (rune >= 0x06EE && rune <= 0x06EF) ||
       (rune >= 0x06FA && rune <= 0x06FC) ||
