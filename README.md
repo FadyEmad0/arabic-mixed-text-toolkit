@@ -52,3 +52,34 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request. In
 ## License
 
 No license has been selected yet. Until a license is added by the repository owner, the repository should be treated as having no grant of permission for reuse beyond the rights provided by applicable law.
+
+
+## Install and run locally on Windows
+
+This package includes a small command-line demo. It requires the Dart SDK.
+
+1. Download the repository ZIP from GitHub (Code → Download ZIP) and extract it.
+2. Open Command Prompt or PowerShell in the extracted project folder (the folder containing `pubspec.yaml`).
+3. Run:
+
+```powershell
+dart pub get
+dart pub global activate --source path .
+```
+
+4. Try the commands:
+
+```powershell
+arabic-text-toolkit direction "مرحبا Hello"
+arabic-text-toolkit normalize "مَرْحَبًا"
+```
+
+If Windows says the command is not recognized, add Dart's Pub cache bin directory to your PATH. The default location is `%LOCALAPPDATA%\Pub\Cache\bin`. Then open a new terminal window.
+
+To uninstall:
+
+```powershell
+dart pub global deactivate arabic_mixed_text_toolkit
+```
+
+This is a command-line test utility, not a graphical Windows application or an installer (.msi/.exe). The package remains in early development.
