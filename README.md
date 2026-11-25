@@ -51,7 +51,8 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request. In
 
 ## License
 
-No license has been selected yet. Until a license is added by the repository owner, the repository should be treated as having no grant of permission for reuse beyond the rights provided by applicable law.
+This project is licensed under the [MIT License](LICENSE).
+
 
 ## Windows installation
 
