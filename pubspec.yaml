@@ -6,5 +6,8 @@ repository: https://github.com/FadyEmad0/arabic-mixed-text-toolkit
 environment:
   sdk: '>=3.0.0 <4.0.0'
 
+executables:
+  arabic-text-toolkit: arabic_text_toolkit.dart
+
 dev_dependencies:
   test: ^1.25.0
