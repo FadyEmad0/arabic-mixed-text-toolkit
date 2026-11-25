@@ -1,23 +1,34 @@
 # Arabic Mixed Text Toolkit
 
-A lightweight Dart package with small utilities for mixed Arabic and English text.
+A small Dart package containing focused utilities for simple Arabic and English mixed-text workflows.
 
-## Current features
+## Current status
 
-- Detects the direction of the first supported Arabic or Latin character.
-- Removes common Arabic diacritic marks and tatweel.
-- Returns a neutral direction when no supported Arabic or Latin character is found.
+Early development (pre-1.0). The API may change. This package is not yet published on pub.dev.
 
-## Installation
+## Features
 
-This package is currently under development and is not yet published on pub.dev.
+- Detects the first supported strong Arabic or basic Latin letter in a string.
+- Ignores digits, punctuation, combining marks, and whitespace when detecting direction.
+- Removes selected Arabic combining marks and tatweel.
+- Includes unit tests and a GitHub Actions workflow for static analysis and tests.
 
-For local development, add it to your `pubspec.yaml` using a path dependency:
+## Important scope and limitations
 
-```yaml
-dependencies:
-  arabic_mixed_text_toolkit:
-    path: ../arabic-mixed-text-toolkit
+This package does **not** implement the Unicode Bidirectional Algorithm (UBA). Its direction result is a lightweight hint only; it does not calculate visual ordering, paragraph embedding levels, or correct rendering of arbitrary mixed-direction text. Use the text-layout engine provided by the target platform for actual bidirectional rendering.
+
+Arabic letter recognition currently covers selected Arabic script ranges, while Latin recognition is limited to basic A-Z and a-z. Additional scripts and Unicode edge cases need explicit tests before being claimed as supported.
+
+Arabic normalization removes selected combining-mark code points and tatweel. It does not perform full Unicode normalization, spelling correction, stemming, or linguistic normalization. Do not use it as a substitute for language-aware search or identity/security comparisons without reviewing the consequences.
+
+## Development
+
+Requires the Dart SDK.
+
+```bash
+dart pub get
+dart analyze
+dart test
 ```
 
 ## Usage
@@ -34,25 +45,10 @@ void main() {
 }
 ```
 
-## Run tests
-
-Install the Dart SDK, then run:
-
-```bash
-dart pub get
-dart test
-```
-
-## Limitations
-
-This is an initial utility package, not a complete Unicode Bidirectional Algorithm implementation. Direction detection currently recognizes the Arabic Unicode blocks and basic Latin letters supported by the implementation. It does not determine full paragraph layout or visual ordering.
-
-Arabic normalization removes selected diacritic code points and tatweel; it does not perform full linguistic normalization, stemming, or spelling correction.
-
-## Project status
-
-Early development. APIs and behavior may change before the first stable release.
-
 ## Contributing
 
-Bug reports, focused improvements, and additional tests are welcome. Please include reproducible examples for text-direction or normalization issues.
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request. Include focused tests and reproducible examples for behavior changes.
+
+## License
+
+No license has been selected yet. Until a license is added by the repository owner, the repository should be treated as having no grant of permission for reuse beyond the rights provided by applicable law.
